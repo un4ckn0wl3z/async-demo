@@ -7,18 +7,30 @@ console.log('Before');
 //   })
 // });
 
-const p = getUser(1);
-p.then( (user) => {
-  console.log(user.gitHubUsername);
-  getRepositories(user.gitHubUsername)
-  .then( (repo) => {
-    console.log(repo);
-    getCommits(repo)
-    .then((commit) => {
-      console.log(commit);
-    })
-  })
-} );
+// const p = getUser(1);
+// p.then( (user) => {
+//   console.log(user.gitHubUsername);
+//   getRepositories(user.gitHubUsername)
+//   .then( (repo) => {
+//     console.log(repo);
+//     getCommits(repo)
+//     .then((commit) => {
+//       console.log(commit);
+//     })
+//   })
+// } );
+
+// async and await
+
+async function displayCommit(){
+  const user =  await getUser(1);
+  const repos = await getRepositories(user.gitHubUsername);
+  const commit = await getCommits(repos[0]);
+  console.log(commit);
+}
+displayCommit();
+
+
 
 console.log('After');
 
