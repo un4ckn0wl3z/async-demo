@@ -23,10 +23,14 @@ console.log('Before');
 // async and await
 
 async function displayCommit(){
-  const user =  await getUser(1);
-  const repos = await getRepositories(user.gitHubUsername);
-  const commit = await getCommits(repos[0]);
-  console.log(commit);
+  try {
+    const user =  await getUser(1);
+    const repos = await getRepositories(user.gitHubUsername);
+    const commit = await getCommits(repos[0]);
+    console.log(commit);
+  } catch (error) {
+    console.log(error);
+  }
 }
 displayCommit();
 
